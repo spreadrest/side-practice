@@ -6,7 +6,7 @@ import { TodoCC } from '../TodoCC/TodoCC'
 export class App extends React.Component {
     
     state = {
-        todos: [],
+        isDeleted: false
     }
 
 
@@ -14,8 +14,19 @@ export class App extends React.Component {
         return (
             <div>
                 <h1>Hello</h1>
+                <button
+                    onClick={() => this.setState(
+                        (state, props) => {
+                            return {isDeleted: !state.isDeleted}
+                        }
+                    )}
+                >{this.state.isDeleted ? 'Показать' : 'Скрыть'} компоненту</button>
                 
-                <TodoCC />
+                {
+                    !this.state.isDeleted && <TodoCC />
+                }
+
+
                 {/* <CounterFC />
                 <CounterCC name='Aris' /> */}
             </div>
